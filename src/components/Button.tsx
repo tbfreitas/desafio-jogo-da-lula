@@ -1,29 +1,35 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import styled from "@emotion/styled";
 
-interface ButtonProps{
-    value: string
-    name: string
-}
 
-const CustomButton = styled.button<ButtonProps>`
+const CustomButton = styled.button<CustomButtonProps>`
  min-width : 190px;
- background-color: #ED1B76;
+ background-color:${(props)=> props.isEliminating || props.isVoting ? '#bbb': '#ED1B76'};
  border: none;
  padding: 10px;
  border-radius: 8px; 
  margin-top: 1px;
  color: #fff;
  cursor: pointer;
-
-
  `
 
-export const Button: React.FC<ButtonProps> = ({
+ interface CustomButtonProps{
+    value: string
+    name: string
+    onClick: MouseEventHandler,
+    isEliminating: boolean
+    isVoting: boolean
+}
+
+
+export const Button: React.FC<CustomButtonProps> = ({
     value,
-    name,
+    name, 
+    onClick,
+    isEliminating,
+    isVoting
 }) => {
     return (
-        <CustomButton value={value} name={name}> {value}</CustomButton>
+        <CustomButton isVoting={isVoting} isEliminating={isEliminating} disabled={isEliminating || isVoting} value={value} name={name} onClick={onClick}> {value}</CustomButton>
     )
 }

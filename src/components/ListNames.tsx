@@ -5,12 +5,14 @@ import styled from "@emotion/styled";
 interface Person{
     name : string
     urlAvatar : string
-    value : string
+    value : number
+    vote: boolean
 }
 
 interface ListNameProps {
     persons : Person[]
     title : string
+    isVoting : boolean
 }
 
 const GameContainer = styled.div`
@@ -86,6 +88,7 @@ const Money = styled.p`
 export const ListNames :React.FC<ListNameProps> = ({
     persons,
     title,
+    isVoting
 }) => {
     return (
         <GameContainer >
@@ -102,7 +105,7 @@ export const ListNames :React.FC<ListNameProps> = ({
                             <Name>{p.name}</Name>
                         </PersonDataInfo>
                         <MoneyContainer>
-                            <Money>{moneyMask(p.value)}</Money>
+                            <Money>{isVoting ? p.vote ? 'SIM' : 'NÃO' : moneyMask(JSON.stringify(p.value))}</Money>
                         </MoneyContainer>
                     </PersonInfo>
                 )}
