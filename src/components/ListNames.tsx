@@ -13,6 +13,7 @@ interface ListNameProps {
     persons : Person[]
     title : string
     isVoting : boolean
+    isAvailableUsers: boolean
 }
 
 const GameContainer = styled.div`
@@ -88,7 +89,8 @@ const Money = styled.p`
 export const ListNames :React.FC<ListNameProps> = ({
     persons,
     title,
-    isVoting
+    isVoting,
+    isAvailableUsers
 }) => {
     return (
         <GameContainer >
@@ -105,7 +107,11 @@ export const ListNames :React.FC<ListNameProps> = ({
                             <Name>{p.name}</Name>
                         </PersonDataInfo>
                         <MoneyContainer>
-                            <Money>{isVoting ? p.vote ? 'SIM' : 'NÃO' : moneyMask(JSON.stringify(p.value))}</Money>
+                            <Money>{isAvailableUsers
+                             ? moneyMask(JSON.stringify(p.value)) : isVoting 
+                                ? p.vote ? 'SIM' : 'NÃO' 
+                                : moneyMask(JSON.stringify(p.value))}
+                            </Money>
                         </MoneyContainer>
                     </PersonInfo>
                 )}

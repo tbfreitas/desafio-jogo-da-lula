@@ -103,6 +103,7 @@ export const GamePage = () => {
       </HeaderGameCointaner>
       <LogoContainer>
          <ListNames
+            isAvailableUsers
             isVoting={isVoting} 
             title="Participantes"
             persons={availableUsers}
@@ -147,6 +148,7 @@ export const GamePage = () => {
             </InfoButtonSeparator>
           </CentralContainer>
            <ListNames
+            isAvailableUsers={false}
             isVoting={isVoting}
             title="Participantes Eliminados"
             persons={eliminatedUsers}
