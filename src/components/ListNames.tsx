@@ -107,7 +107,7 @@ export const ListNames :React.FC<ListNameProps> = ({
                             <Name>{p.name}</Name>
                         </PersonDataInfo>
                         <MoneyContainer>
-                            <Money>{isAvailableUsers
+                            <Money>{!isAvailableUsers
                              ? moneyMask(JSON.stringify(p.value)) : isVoting 
                                 ? p.vote ? 'SIM' : 'NÃO' 
                                 : moneyMask(JSON.stringify(p.value))}
